@@ -40,9 +40,10 @@ export default {
     ...mapMutations(['getContadores', 'editContador', 'removeContador']),
     subtractContador (contador) {
       contador.count--
-      if (contador.count > 0) {
+      if (contador.count >= 0) {
         this.editContador(contador)
       } else {
+        contador.count++
         alert('Contador no puede ser menor a 0')
       }
     },
@@ -51,6 +52,7 @@ export default {
         contador.count++
         this.editContador(contador)
       } else {
+        contador.count--
         alert('Contador no puede ser mayor a 20')
       }
     }
