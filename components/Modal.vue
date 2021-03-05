@@ -38,6 +38,11 @@ export default {
       nameContador: ''
     }
   },
+  computed: {
+    contadores () {
+      return this.$store.state.contadores
+    }
+  },
   watch: {
     'nameContador' (after, before) {
       const btnContador = document.getElementById('btnAddContador');
@@ -47,9 +52,13 @@ export default {
   methods: {
     ...mapMutations(['pushContador']),
     submitForm (nameContador) {
-      // this.createContador(nameContador)
-      this.pushContador(nameContador)
-      this.nameContador = ''
+      if (this.contadores.find(c => c.name === nameContador)) {
+        alert('Nombre de contador repetido')
+      } else {
+        this.displayModal()
+        this.pushContador(nameContador)
+        this.nameContador = ''
+      }
     }
   }
 }

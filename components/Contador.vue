@@ -5,8 +5,7 @@
     </button>
     <div v-for="contador in contadores" :key="contador.name" class="contador">
       <div class="contenedorName">
-        <input v-model="contador.name" type="text" name="contadorName" placeholder="Ingrese nombre" required>
-        <!-- <label class="contadorName">{{ contador.name }}</label> -->
+        <label class="contadorName"> {{ contador.name }} </label>
       </div>
       <div class="contadorSettings">
         <button type="button" @click="subtractContador(contador)">
@@ -80,7 +79,7 @@ export default {
   width: 80%;
 }
 .contadorName{
-  padding: 5px;
+  padding: 3px;
   background-color: white;
 }
 .contadorSettings{
