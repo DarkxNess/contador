@@ -1,0 +1,167 @@
+.header{
+  padding:10px;
+  color: white;
+  background-color: rgb(69,40,159);
+}
+.col-flex{
+  width: 25%;
+  float:left;
+  display:grid;
+  padding: 15px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.row{
+  width: 100%;
+  display:table;
+}
+/* Buttons css and inputs */
+.form-inputs input, .form-inputs select{
+  width: 8rem;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.deleteBtn{
+    width: 30px;
+    height: 30px;
+}
+.blueBtn{
+  background-color: rgb(40 95 159);
+  color: white;
+  border-radius: 5%;
+  border: .1px rgb(255 253 253 / 83%) solid;
+  padding: 0.4rem;
+}
+.blueBtn:hover{
+    background-color: rgb(56 129 214);
+}
+.blueBtn:disabled{
+    background-color: rgb(40 95 159 / 0.59);
+}
+.redBtn{
+    background-color: rgb(199 81 81);
+    color: white;
+    border-radius: 5%;
+    border: .1px rgb(255 253 253 / 83%) solid;
+    padding: 0.4rem;
+}
+.redBtn:hover{
+    background-color: rgb(218 119 119);
+}
+.redBtn:disabled{
+    background-color: rgb(199 81 81 / 0.59);
+}
+/* Modal Css */
+.modal{
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    background: rgb(85 89 90 / 82%);
+}
+.modalHeader{
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+    border-bottom: 1px solid;
+    grid-area: header;
+    font-size:large;
+    font-weight: 600;
+    padding: 10px;
+    background-color: rgb(60 60 208 / 83%);
+    color: white;
+}
+.modalBody{
+    display:flex;
+    justify-content: center;
+    grid-area: main;
+}
+.modalFooter{
+    background-color: rgb(60 208 62 / 15%);
+    display: flex;
+    flex-direction: row-reverse;
+    grid-area: footer;
+    border-top: 1px solid;
+    padding: 10px;
+}
+.modalFooter button{
+    margin: 5px;
+}
+.modal-content{
+    border-radius: 10px 10px 0px 0px;
+    background-color:white;
+    width:50%;
+    height:40%;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+    color: black;
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-areas: 'header'
+    'main'
+    'footer';
+}
+#formAddContador{
+    margin: 30px
+}
+/* Contador CSS */
+.contadoresContainer{
+    border: 1px solid;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0px 10px 0px 10px;
+  }
+  .contador{
+    display: flex;
+    align-items: center;
+    margin: 10px 0px 10px 0px;
+    padding: 5px;
+    background-color: rgb(167, 212, 172);
+    border-radius: 3px;
+    width: 100%;
+  }
+  .contenedorName{
+    margin: 0px 10px 0px 10px;
+    padding: 5px;
+    width: 80%;
+  }
+  .contadorName{
+    padding: 3px;
+    background-color: white;
+  }
+  .contadorSettings{
+    float: right;
+    width: 20%;
+    text-align: center;
+  }
+  .contadorNumber{
+    width: 30px;
+    max-width: 60px;
+  }
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+  }
+/* Media Querys */
+@media (max-width: 700px) {
+    .col-flex{
+        width: 50%;
+    }
+    .form-inputs input, .form-inputs select{
+        width: 6rem;
+    }
+    #formAddContador{
+        margin: 0px
+    }
+    .contenedorName{
+        width: 70%;
+    }
+  .contadorSettings{
+    width: 30%;
+  }
+}

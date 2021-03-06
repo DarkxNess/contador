@@ -1,6 +1,6 @@
 <template>
   <div class="contadoresContainer">
-    <button id="btnOpenModalAdd" disabled type="button" @click="displayModal()">
+    <button id="btnOpenModalAdd" class="blueBtn" disabled type="button" @click="displayModal()">
       Agregar
     </button>
     <div v-for="contador in contadores" :key="contador.name" class="contador">
@@ -8,16 +8,20 @@
         <label class="contadorName"> {{ contador.name }} </label>
       </div>
       <div class="contadorSettings">
-        <button type="button" @click="subtractContador(contador)">
+        <button type="button" class="redBtn" @click="subtractContador(contador)">
           -
         </button>
         <input v-model="contador.count" class="contadorNumber" name="contadorNumber" required>
-        <button type="button" @click="addContador(contador)">
+        <button type="button" class="blueBtn" @click="addContador(contador)">
           +
         </button>
-        <button type="button" @click="removeContador(contador)">
-          Delete
-        </button>
+        <img
+          src="../assets/trash.svg"
+          class="deleteBtn"
+          x="50%"
+          y="50%"
+          alt="Kiwi standing on oval"
+          @click="removeContador(contador)">
       </div>
     </div>
   </div>
@@ -60,41 +64,4 @@ export default {
 }
 </script>
 <style>
-.contadoresContainer{
-  border: 1px solid;
-  margin: 0 auto;
-  height: 100%;
-  padding: 0px 10px 0px 10px;
-}
-.contador{
-  display: flex;
-  align-items: center;
-  margin: 10px 0px 10px 0px;
-  padding: 5px;
-  background-color: rgb(167, 212, 172);
-  border-radius: 3px;
-  width: 100%;
-}
-.contenedorName{
-  margin: 0px 10px 0px 10px;
-  padding: 5px;
-  width: 80%;
-}
-.contadorName{
-  padding: 3px;
-  background-color: white;
-}
-.contadorSettings{
-  float: right;
-  width: 20%;
-}
-.contadorNumber{
-  width: 30px;
-  max-width: 60px;
-}
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-}
 </style>

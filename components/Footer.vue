@@ -8,7 +8,7 @@ import { mapMutations } from 'vuex'
 export default {
   computed: {
     contadoresCount () {
-      return this.$store.state.contadoresCount
+      return this.$store.state.contadores.length
     }
   },
   mounted () {
