@@ -1,4 +1,9 @@
+/* Header css */
+.collapse{
+  display:none;
+}
 .header{
+  min-height: 50px;
   padding:10px;
   color: white;
   background-color: rgb(69,40,159);
@@ -110,7 +115,6 @@
 }
 /* Contador CSS */
 .contadoresContainer{
-    border: 1px solid;
     margin: 0 auto;
     height: 100%;
     padding: 0px 10px 0px 10px;
@@ -137,6 +141,8 @@
     float: right;
     width: 20%;
     text-align: center;
+    display: flex;
+    justify-content: center;
   }
   .contadorNumber{
     width: 30px;
@@ -147,21 +153,54 @@
       opacity: 0;
     }
   }
+/* Main css */
+
+.container-grid{
+  display: grid;
+  grid-template-rows: auto 8fr 50px;
+  grid-template-areas: 'header'
+  'main'
+  'footer';
+  margin: 0 auto;
+  min-height: 100vh;
+}
+.header{
+  grid-area: header;
+}
+.main{
+  margin: 20px 40px 20px 40px;
+  grid-area: main;
+}
+.footer{
+  grid-area: footer;
+}
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 /* Media Querys */
 @media (max-width: 700px) {
-    .col-flex{
-        width: 50%;
-    }
-    .form-inputs input, .form-inputs select{
-        width: 6rem;
-    }
-    #formAddContador{
-        margin: 0px
-    }
-    .contenedorName{
-        width: 70%;
-    }
-  .contadorSettings{
-    width: 30%;
+  .col-flex{
+      width: 50%;
   }
+  .form-inputs input, .form-inputs select{
+      width: 6rem;
+  }
+  #formAddContador{
+      margin: 0px
+  }
+  .contenedorName{
+      width: 70%;
+  }
+.contadorSettings{
+  width: 30%;
+}
+.main{
+  margin: 20px 0px 20px 0px;
+}
 }
