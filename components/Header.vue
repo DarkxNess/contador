@@ -4,8 +4,8 @@
       <button class="blueBtn" @click="showFilter()">
         Filtros
       </button>
-      <div class="collapse filter">
-        <div class="col-flex form-inputs">
+      <div id="filter" class="collapse hidden">
+        <div class="col-flex form-inputs filter-divs">
           <label>Ordenar por</label>
           <select v-model="settings.orderParam" name="orderParam" @change="refreshContent(settings)">
             <option value="name">
@@ -78,10 +78,10 @@ export default {
     ...mapMutations(['changeSettings', 'getSettings', 'refreshContent', 'cleanSettings']),
     showFilter () {
       if (this.statusFilter) {
-        document.getElementsByClassName('collapse filter')[0].style.display = 'none'
+        document.getElementById('filter').classList.toggle('hidden')
         this.statusFilter = false
       } else {
-        document.getElementsByClassName('collapse filter')[0].style.display = 'block'
+        document.getElementById('filter').classList.toggle('hidden')
         this.statusFilter = true
       }
     }

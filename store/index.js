@@ -5,6 +5,7 @@ const createStore = () => {
     state: {
       contadoresCount: 0,
       contadores: [],
+      contadoresTotales: [],
       contador: {},
       settings: {},
       setting: {}
@@ -12,28 +13,33 @@ const createStore = () => {
     mutations: {
       getContadores (state) {
         if (localStorage.getItem('contadores')) {
+          state.contadoresTotales = JSON.parse(localStorage.getItem('contadores'))
           state.contadores = JSON.parse(localStorage.getItem('contadores'))
         }
       },
       editContador (state, contador) {
-        const index = state.contadores.findIndex(c => c.id === contador.id)
-        state.contadores[index] = contador
+        const index = state.contadoresTotales.findIndex(c => c.id === contador.id)
+        state.contadoresTotales[index] = contador
         localStorage.removeItem('contadores')
-        localStorage.setItem('contadores', JSON.stringify(state.contadores))
+        localStorage.setItem('contadores', JSON.stringify(state.contadoresTotales))
+        state.contadoresTotales = JSON.parse(localStorage.getItem('contadores'))
       },
       removeContador (state, id) {
         // eslint-disable-next-line vue/no-mutating-props
         state.contadores.splice(state.contadores.indexOf(c => c.id === id), 1)
+        state.contadoresTotales.splice(state.contadores.indexOf(c => c.id === id), 1)
         localStorage.removeItem('contadores')
-        localStorage.setItem('contadores', JSON.stringify(state.contadores))
+        localStorage.setItem('contadores', JSON.stringify(state.contadoresTotales))
+        state.contadoresTotales = JSON.parse(localStorage.getItem('contadores'))
       },
       pushContador (state, contador) {
         if (localStorage.getItem('contadores')) {
-          state.contadores = JSON.parse(localStorage.getItem('contadores'))
+          state.contadoresTotales = JSON.parse(localStorage.getItem('contadores'))
         }
         localStorage.removeItem('contadores')
-        state.contadores.push({ id: new Date().valueOf().toString(16), name: contador, count: 0 })
-        localStorage.setItem('contadores', JSON.stringify(state.contadores))
+        state.contadoresTotales.push({ id: new Date().valueOf().toString(16), name: contador, count: 0 })
+        localStorage.setItem('contadores', JSON.stringify(state.contadoresTotales))
+        state.contadoresTotales = JSON.parse(localStorage.getItem('contadores'))
       },
       getSettings (state) {
         if (sessionStorage.getItem('settings') != null) {
@@ -65,17 +71,26 @@ const createStore = () => {
         if (localStorage.getItem('contadores')) {
           state.contadores = JSON.parse(localStorage.getItem('contadores'))
         }
-        state.contadoresCount = state.contadores.length
-        state.setting = JSON.parse(sessionStorage.getItem('settings'))
+        state.contadoresCount = state.contadoresTotales.length
+        if (sessionStorage.getItem('settings')) {
+          state.setting = JSON.parse(sessionStorage.getItem('settings'))
+        } else {
+          state.settings = {
+            range: 0,
+            orderType: '',
+            rangeType: '',
+            orderParam: ''
+          }
+        }
         if (settings.rangeType && settings.range) {
           // eslint-disable-next-line array-callback-return
           state.contadores = state.contadores.filter((s) => {
             if (settings.rangeType === 'mayor') {
-              if (s.count > settings.range) {
+              if (s.count >= settings.range) {
                 return s
               }
             } else if ((settings.rangeType === 'menor')) {
-              if (s.count < settings.range) {
+              if (s.count <= settings.range) {
                 return s
               }
             }

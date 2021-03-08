@@ -21,7 +21,8 @@
           x="50%"
           y="50%"
           alt="Kiwi standing on oval"
-          @click="removeContador(contador)">
+          @click="removeContador(contador)"
+        >
       </div>
     </div>
   </div>
@@ -29,10 +30,17 @@
 <script>
 import { mapMutations } from 'vuex'
 export default {
+  // eslint-disable-next-line vue/require-prop-types
   props: ['displayModal'],
   computed: {
     contadores () {
       return this.$store.state.contadores
+    },
+    contadoresTotales () {
+      return this.$store.state.contadoresTotales
+    },
+    settings () {
+      return this.$store.state.settings
     }
   },
   mounted () {
@@ -41,11 +49,12 @@ export default {
     this.getContadores()
   },
   methods: {
-    ...mapMutations(['getContadores', 'editContador', 'removeContador']),
+    ...mapMutations(['getContadores', 'editContador', 'removeContador', 'refreshContent']),
     subtractContador (contador) {
-      contador.count--
       if (contador.count >= 0) {
+        contador.count--
         this.editContador(contador)
+        this.refreshContent(this.settings)
       } else {
         contador.count++
         alert('Contador no puede ser menor a 0')
@@ -55,6 +64,7 @@ export default {
       if (contador.count < 20) {
         contador.count++
         this.editContador(contador)
+        this.refreshContent(this.settings)
       } else {
         contador.count--
         alert('Contador no puede ser mayor a 20')

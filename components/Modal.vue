@@ -31,6 +31,7 @@
 <script>
 import { mapMutations } from 'vuex'
 export default {
+  // eslint-disable-next-line vue/require-prop-types
   props: ['show', 'displayModal'],
   data () {
     return {
@@ -39,8 +40,14 @@ export default {
     }
   },
   computed: {
+    contadoresTotales () {
+      return this.$store.state.contadoresTotales
+    },
     contadores () {
       return this.$store.state.contadores
+    },
+    settings () {
+      return this.$store.state.settings
     }
   },
   watch: {
@@ -50,13 +57,14 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['pushContador']),
+    ...mapMutations(['pushContador', 'refreshContent']),
     submitForm (nameContador) {
-      if (this.contadores.find(c => c.name === nameContador)) {
+      if (this.contadoresTotales.find(c => c.name === nameContador)) {
         alert('Nombre de contador repetido')
       } else {
         this.displayModal()
         this.pushContador(nameContador)
+        this.refreshContent(this.settings)
         this.nameContador = ''
       }
     }

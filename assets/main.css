@@ -1,26 +1,3 @@
-/* Header css */
-.collapse{
-  display:none;
-}
-.header{
-  min-height: 50px;
-  padding:10px;
-  color: white;
-  background-color: rgb(69,40,159);
-}
-.col-flex{
-  width: 25%;
-  float:left;
-  display:grid;
-  padding: 15px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
-.row{
-  width: 100%;
-  display:table;
-}
 /* Buttons css and inputs */
 .form-inputs input, .form-inputs select{
   width: 8rem;
@@ -197,10 +174,43 @@
   .contenedorName{
       width: 70%;
   }
-.contadorSettings{
-  width: 30%;
+  .contadorSettings{
+    width: 30%;
+  }
+  .main{
+    margin: 20px 0px 20px 0px;
+  }
 }
-.main{
-  margin: 20px 0px 20px 0px;
+/* Header css */
+.collapse{
+  display: block;
+  transition: all 2s linear;
 }
+.hidden {
+  display: none;
+  opacity: 0;
+  /* transition: identifier 3s; */
+}
+.col-flex{
+  width: 25%;
+  float:left;
+  display:grid;
+  padding: 15px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+/* @keyframes identifier {
+  0% { opacity:0; height: 0%; display: none; }
+  100% { opacity:1; height: 100%; display: grid;}
+} */
+.header{
+  min-height: 50px;
+  padding:10px;
+  color: white;
+  background-color: rgb(69,40,159);
+}
+.row{
+  width: 100%;
+  display:table;
 }
